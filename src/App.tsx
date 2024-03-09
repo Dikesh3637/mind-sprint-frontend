@@ -1,6 +1,5 @@
 import socket, { adminNamespace } from "./client-socket";
 import { LoginPage } from "./components/LoginPage";
-import { QuestionPage } from "./components/QuestionPage";
 import { WaitingPage } from "./components/WaitingPage";
 import { ParticipantsAnswerPage } from "./components/ParticipantsAnswerPage";
 import { AdminDashboard } from "./components/AdminDashboard";

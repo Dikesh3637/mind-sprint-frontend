@@ -28,6 +28,7 @@ export const QuestionDashboard = () => {
       setMaxCycles(data.questionList.length);
     });
     adminNamespace.on("getCurrentQuestionNumber", (data, callback) => {
+      console.log(data);
       console.log("current question number: ", currentQuestion);
       callback({ currentQuestion: currentQuestion });
     });

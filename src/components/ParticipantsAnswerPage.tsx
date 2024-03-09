@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import socket, { answerNamespace } from "../client-socket";
-import { useClockStore, useQuestionCounterStore } from "../store/store";
+import { useClockStore } from "../store/store";
 import Cookies from "js-cookie";
 
 export const ParticipantsAnswerPage = () => {

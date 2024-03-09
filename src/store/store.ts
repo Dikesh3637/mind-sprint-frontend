@@ -35,7 +35,7 @@ export const useAdminStore = create<AdminStore>((set) => ({
   setAdminFalse: () => set((state) => ({ ...state, isAdmin: false })),
 }));
 
-export const useClockStore = create<ClockStore>((set) => ({
+export const useClockStore = create<ClockStore>(() => ({
   answerTime: 10,
   waitTime: 5,
   resultTime: 5,
