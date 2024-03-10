@@ -6,9 +6,10 @@ export type QuestionPageType = {
   question: string;
   options: string[];
   answer: string;
+  img?: string;
 };
 
-export const QuestionPage = ({ question, options }: QuestionPageType) => {
+export const QuestionPage = ({ question, img, options }: QuestionPageType) => {
   useEffect(() => {
     adminNamespace.emit("setAnswerMutex", true);
 
@@ -22,9 +23,14 @@ export const QuestionPage = ({ question, options }: QuestionPageType) => {
         <Timer ScreenType="QuestionScreen" />
       </div>
       <div className=" w-[95%] h-[95%] bg-[#226ce0] rounded-2xl grid grid-rows-2 p-[5rem] gap-10">
-        <div className="bg-white text-black  w-full rounded-xl p-[1.5rem] text-[2.5rem] font-font-5 flex items-center justify-center">
+        <div
+          className="bg-white text-black w-full rounded-xl p-[1.5rem] text-[2.5rem] font-font-5 flex 
+          items-center justify-around"
+        >
           <h1 className="question">{question}</h1>
+          {img && <img src={img} alt="" className="h-[100%] rounded-xl" />}
         </div>
+
         <div className="options-container grid grid-cols-2 grid-rows-2 gap-5 font-font-5">
           <div className="option border-4 border-[#152C69] rounded-xl text-[white] p-[1.5rem] flex items-center gap-2">
             <div className="rounded-full bg-[#152C69] w-[5rem] h-[5rem] flex items-center justify-center">

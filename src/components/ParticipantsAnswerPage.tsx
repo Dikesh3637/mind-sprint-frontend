@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import socket, { answerNamespace } from "../client-socket";
 import { useClockStore } from "../store/store";
 import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const ParticipantsAnswerPage = () => {
   const answerTime = useClockStore((state) => state.answerTime);
@@ -10,8 +11,16 @@ export const ParticipantsAnswerPage = () => {
   const [answered, setAnswered] = useState(false);
   const [adminScreen, setAdminScreen] = useState("");
   const teamNumber = Cookies.get("teamId");
+  const [selectedAnswer, setSelectedAnswer] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
+    socket.on("quiz-ended", () => {
+      Cookies.set("inQuiz", "false");
+      navigate("/");
+    });
+
     socket.on("timerUpdate", (data) => {
       setTimerValue(data);
     });
@@ -19,6 +28,8 @@ export const ParticipantsAnswerPage = () => {
       console.log("admin screen before change: ", adminScreen);
       console.log("admin screen after change: ", data);
       setAdminScreen(data);
+
+      setSelectedAnswer(0);
     });
     socket.on("startUserTimer", () => {
       setTime(new Date().getTime());
@@ -47,20 +58,21 @@ export const ParticipantsAnswerPage = () => {
       answer: number,
       time: diffTime,
     });
+    setSelectedAnswer(number);
   };
 
   return (
     <div className="h-screen w-screen bg-[#226ce0] flex flex-col justify-center items-center gap-[2rem] font-font-5">
       {adminScreen === "QuestionScreen" && answered && (
-        <div className="answer-screen-blur h-screen w-screen absolute backdrop-filter backdrop-blur-lg">
-          <h1 className="posted-screen flex justify-center items-center h-[100%] text-7xl text-white">
+        <div className="answer-screen-blur h-screen w-screen absolute backdrop-filter backdrop-blur-lg flex justify-center items-center text-center">
+          <h1 className="posted-screen flex justify-center items-center h-[100%] sm:text-7xl text-4xl text-white">
             Your answer has been posted
           </h1>
         </div>
       )}
       {adminScreen !== "QuestionScreen" && (
-        <div className="answer-screen-blur h-screen w-screen absolute backdrop-filter backdrop-blur-lg">
-          <h1 className="posted-screen flex justify-center items-center h-[100%] text-7xl text-white">
+        <div className="answer-screen-blur h-screen w-screen absolute backdrop-filter backdrop-blur-lg flex justify-center items-center text-center">
+          <h1 className="posted-screen flex justify-center items-center h-[100%] sm:text-7xl text-4xl text-white">
             Waiting for the question
           </h1>
         </div>
@@ -73,7 +85,9 @@ export const ParticipantsAnswerPage = () => {
       <div className="sm:h-[50%] sm:w-[70%] h-[65%] w-[80%] grid grid-rows-2 grid-cols-2 text-white gap-4">
         <button
           onClick={() => handleClick(1)}
-          className="border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69]"
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
+            selectedAnswer === 1 ? "bg-[#152c69]" : ""
+          }`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>01</h1>
@@ -81,7 +95,9 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(2)}
-          className="border-4 border-[#152c69] flex items-center justify-center rounded-2xl  hover:bg-[#152c69]"
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
+            selectedAnswer === 2 ? "bg-[#152c69]" : ""
+          }`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem]  sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>02</h1>
@@ -89,7 +105,9 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(3)}
-          className="border-4 border-[#152c69] flex items-center justify-center rounded-2xl  hover:bg-[#152c69]"
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
+            selectedAnswer === 3 ? "bg-[#152c69]" : ""
+          }`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>03</h1>
@@ -97,7 +115,9 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(4)}
-          className="border-4 border-[#152c69] flex items-center justify-center rounded-2xl  hover:bg-[#152c69]"
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
+            selectedAnswer === 4 ? "bg-[#152c69]" : ""
+          }`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>04</h1>

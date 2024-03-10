@@ -11,7 +11,6 @@ import { useEffect } from "react";
 import { QuestionDashboard } from "./components/QuestionDashboard";
 import { EndScreen } from "./components/EndScreen";
 import Cookies from "js-cookie";
-// import { AdminDashDummy } from "./components/AdminDashDummy";
 
 const router = createBrowserRouter([
   {
