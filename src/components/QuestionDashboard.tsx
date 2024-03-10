@@ -49,6 +49,7 @@ export const QuestionDashboard = () => {
           question={questionList[currentQuestion].question}
           options={questionList[currentQuestion].options}
           answer={questionList[currentQuestion].answer}
+          img={questionList[currentQuestion].img}
         />
       )}
       {currentScreen === "QuestionInScreen" && <QuestionInScreen />}
