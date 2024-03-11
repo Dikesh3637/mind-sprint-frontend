@@ -11,6 +11,7 @@ export const EndScreen = () => {
   }, []);
   const handleClick = () => {
     Cookies.set("isAdmin", "false");
+    adminNamespace.emit("quiz-ended");
     navigate("/");
   };
 

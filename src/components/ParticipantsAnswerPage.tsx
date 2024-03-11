@@ -11,7 +11,6 @@ export const ParticipantsAnswerPage = () => {
   const [answered, setAnswered] = useState(false);
   const [adminScreen, setAdminScreen] = useState("");
   const teamNumber = Cookies.get("teamId");
-  const [selectedAnswer, setSelectedAnswer] = useState(0);
 
   const navigate = useNavigate();
 
@@ -28,8 +27,6 @@ export const ParticipantsAnswerPage = () => {
       console.log("admin screen before change: ", adminScreen);
       console.log("admin screen after change: ", data);
       setAdminScreen(data);
-
-      setSelectedAnswer(0);
     });
     socket.on("startUserTimer", () => {
       setTime(new Date().getTime());
@@ -40,6 +37,7 @@ export const ParticipantsAnswerPage = () => {
       socket.off("timerUpdate");
       socket.off("startUserTimer");
       socket.off("screenChange");
+      socket.off("quiz-ended");
     };
   }, []);
 
@@ -58,7 +56,6 @@ export const ParticipantsAnswerPage = () => {
       answer: number,
       time: diffTime,
     });
-    setSelectedAnswer(number);
   };
 
   return (
@@ -85,9 +82,7 @@ export const ParticipantsAnswerPage = () => {
       <div className="sm:h-[50%] sm:w-[70%] h-[65%] w-[80%] grid grid-rows-2 grid-cols-2 text-white gap-4">
         <button
           onClick={() => handleClick(1)}
-          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
-            selectedAnswer === 1 ? "bg-[#152c69]" : ""
-          }`}
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl active:bg-[#152c69] lg:hover:bg-[#152c69]`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>01</h1>
@@ -95,9 +90,7 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(2)}
-          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
-            selectedAnswer === 2 ? "bg-[#152c69]" : ""
-          }`}
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl active:bg-[#152c69] lg:hover:bg-[#152c69]`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem]  sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>02</h1>
@@ -105,9 +98,7 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(3)}
-          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
-            selectedAnswer === 3 ? "bg-[#152c69]" : ""
-          }`}
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl active:bg-[#152c69] lg:hover:bg-[#152c69]`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>03</h1>
@@ -115,9 +106,7 @@ export const ParticipantsAnswerPage = () => {
         </button>
         <button
           onClick={() => handleClick(4)}
-          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl hover:bg-[#152c69] ${
-            selectedAnswer === 4 ? "bg-[#152c69]" : ""
-          }`}
+          className={`border-4 border-[#152c69] flex items-center justify-center rounded-2xl active:bg-[#152c69] lg:hover:bg-[#152c69]`}
         >
           <div className="rounded-full bg-[#152c69] sm:text-[5rem] sm:w-[10rem] sm:h-[8rem] text-[3rem] w-[6rem] h-[5rem]">
             <h1>04</h1>

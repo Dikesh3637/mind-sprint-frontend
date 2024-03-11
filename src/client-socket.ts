@@ -6,14 +6,10 @@ import { io } from "socket.io-client";
 //     ? "http://localhost:10000"
 //     : "https://mind-sprint-server.onrender.com";
 
-const socket = io(`https://mind-sprint-server.onrender.com`);
+const socket = io(`http://localhost:10000`);
 
-export const adminNamespace = io(
-  `https://mind-sprint-server.onrender.com/admin-dash`
-);
+export const adminNamespace = io(`http://localhost:10000/admin-dash`);
 
-export const answerNamespace = io(
-  `https://mind-sprint-server.onrender.com/answer`
-);
+export const answerNamespace = io(`http://localhost:10000/answer`);
 
 export default socket;
