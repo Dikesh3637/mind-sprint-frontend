@@ -22,7 +22,7 @@ export const JoinScreen = () => {
       setShowError(true);
     } else {
       let teamData = {
-        teamId: teamLeadId,
+        teamId: parseInt(teamLeadId),
         teamPassword: teamLeadPassword,
       };
 
@@ -30,7 +30,7 @@ export const JoinScreen = () => {
         if (data.authFlag) {
           console.log("the user has joined the quiz socket");
           Cookies.set("inQuiz", "true");
-          Cookies.set("teamId", teamData.teamId);
+          Cookies.set("teamId", `${teamData.teamId}`);
           Cookies.set("teamPassword", teamData.teamPassword);
           navigate("/wait");
         } else {
