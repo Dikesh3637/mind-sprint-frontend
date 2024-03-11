@@ -24,13 +24,15 @@ export const LeaderBoard = () => {
           <h1 className="text-[2rem] text-white">Leader Board</h1>
         </div>
         <div className="grid grid-rows-10 w-[95%] h-[80%] border-2 border-[#152C69] p-[1rem] bg-white rounded-2xl gap-1">
-          {leaderBoardInfo.map((team: any) => (
-            <LeadCard
-              teamNumber={team.teamNumber}
-              points={team.time}
-              key={team.teamNumber}
-            />
-          ))}
+          {leaderBoardInfo
+            .sort((a: any, b: any) => b.time - a.time)
+            .map((team: any) => (
+              <LeadCard
+                teamNumber={team.teamNumber}
+                points={team.time}
+                key={team.teamNumber}
+              />
+            ))}
         </div>
       </div>
     </div>
