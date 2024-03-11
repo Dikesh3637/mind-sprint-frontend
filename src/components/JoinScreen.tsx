@@ -10,12 +10,14 @@ export const JoinScreen = () => {
   const [teamLeadPassword, setTeamLeadPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [showPasswordError, setShowPasswordError] = useState(false);
+  const [clicked, setClicked] = useState(false);
 
   useEffect(() => {
     Cookies.get("inQuiz") === "true" && navigate("/wait");
   }, []);
 
   const clickHandler = () => {
+    setClicked(true);
     if (teamLeadId === "" || teamLeadPassword === "") {
       setShowError(true);
     } else {
@@ -29,9 +31,11 @@ export const JoinScreen = () => {
           console.log("the user has joined the quiz socket");
           Cookies.set("inQuiz", "true");
           Cookies.set("teamId", teamData.teamId);
+          Cookies.set("teamPassword", teamData.teamPassword);
           navigate("/wait");
         } else {
           setShowPasswordError(true);
+          setClicked(false);
         }
       });
     }
@@ -39,6 +43,13 @@ export const JoinScreen = () => {
 
   return (
     <div className="h-screen bg-[#DBDBFF] flex justify-center items-center">
+      {clicked && (
+        <div className="answer-screen-blur h-screen w-screen absolute backdrop-filter backdrop-blur-lg flex justify-center items-center text-center z-50">
+          <h1 className="posted-screen flex justify-center items-center h-[100%] sm:text-7xl text-4xl text-blue-600 font-font-5 ">
+            Joining you to quiz
+          </h1>
+        </div>
+      )}
       <div className="sm:w-3/12 w-9/12 bg-white rounded-2xl p-6">
         <div className="flex flex-col sm:gap-12 gap-8 justify-center items-center">
           <div>

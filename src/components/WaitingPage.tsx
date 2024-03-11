@@ -6,6 +6,12 @@ import { useEffect } from "react";
 export const WaitingPage = () => {
   const navigate = useNavigate();
   useEffect(() => {
+    if (Cookies.get("inQuiz") === "true") {
+      socket.emit("connectToQuiz", { inQuiz: "true" });
+    } else {
+      navigate("/join-screen");
+    }
+
     socket.on("cancel-quiz", () => {
       console.log("quiz has been cancelled");
       Cookies.set("inQuiz", "false");
@@ -18,6 +24,7 @@ export const WaitingPage = () => {
 
     return () => {
       socket.off("cancel-quiz");
+      socket.off("start-quiz");
     };
   }, []);
 
