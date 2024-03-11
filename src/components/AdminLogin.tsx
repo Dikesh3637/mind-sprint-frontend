@@ -27,7 +27,7 @@ export const AdminLogin = () => {
       setShowError(true);
     }
   };
-  
+
   return (
     <div className="h-screen bg-[#DBDBFF] flex justify-center items-center">
       <div className="sm:w-3/12 w-9/12 bg-white rounded-2xl p-6">
@@ -58,7 +58,7 @@ export const AdminLogin = () => {
               Password
             </label>
             <input
-              type="text"
+              type="password"
               placeholder="Enter your password"
               className="font-font-2 border-2 border-[#d0bcd5] rounded-2xl p-4"
               onChange={(e) => setAdminpassword(e.target.value)}
