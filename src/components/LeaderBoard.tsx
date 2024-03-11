@@ -25,14 +25,17 @@ export const LeaderBoard = () => {
         </div>
         <div className="grid grid-rows-10 w-[95%] h-[80%] border-2 border-[#152C69] p-[1rem] bg-white rounded-2xl gap-1">
           {leaderBoardInfo
-            .sort((a: any, b: any) => b.time - a.time)
-            .map((team: any) => (
-              <LeadCard
-                teamNumber={team.teamNumber}
-                points={team.time}
-                key={team.teamNumber}
-              />
-            ))}
+            .sort((a: any, b: any) => a.time - b.time)
+            .map(
+              (team: any, index: number) =>
+                index <= 8 && (
+                  <LeadCard
+                    teamNumber={team.teamNumber}
+                    points={team.time}
+                    key={team.teamNumber}
+                  />
+                )
+            )}
         </div>
       </div>
     </div>

@@ -46,9 +46,11 @@ export const AdminDashboard = () => {
         <p className="text-[1rem]"> Powered By Page1Dev</p>
       </div>
 
-      <div className="h-[75%] w-[80%] bg-[#226ce0] rounded-2xl border-4 border-[#152C69] font-font-5 grid grid-cols-7 grid-rows-4 p-[2rem] place-items-center ">
+      <div className="h-[75%] w-[80%] bg-[#226ce0] rounded-2xl border-4 border-[#152C69] font-font-5 grid grid-cols-8 grid-rows-4 p-[2rem] place-items-center ">
         {teamNumber &&
-          teamNumber.map((team) => <PlayerIcon teamNumber={team} key={team} />)}
+          teamNumber
+            .sort((a, b) => parseInt(a) - parseInt(b))
+            .map((team) => <PlayerIcon teamNumber={team} key={team} />)}
       </div>
       <div className="flex justify-center items-center gap-10 font-font-3 font-medium">
         <button
