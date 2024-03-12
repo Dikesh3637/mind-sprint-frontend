@@ -56,7 +56,7 @@ function App() {
   // Emit an event to the server
   socket.emit("hello", "world");
 
-  //connection using the inQuiz cookie
+  // connection using the inQuiz cookie
   const inQuiz = Cookies.get("inQuiz");
   socket.emit("connectToQuiz", { inQuiz });
 

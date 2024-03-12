@@ -20,11 +20,11 @@ export const ParticipantsAnswerPage = () => {
       navigate("/");
     });
 
-    if (Cookies.get("inQuiz") === "true") {
-      socket.emit("connectToQuiz", { inQuiz: "true" });
-    } else {
-      navigate("/join-screen");
-    }
+    // if (Cookies.get("inQuiz") === "true") {
+    //   socket.emit("connectToQuiz", { inQuiz: "true" });
+    // } else {
+    //   navigate("/join-screen");
+    // }
 
     socket.on("timerUpdate", (data) => {
       setTimerValue(data);
