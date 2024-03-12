@@ -11,11 +11,11 @@ import { io } from "socket.io-client";
 // export const answerNamespace = io(`http://localhost:10000/answer`);
 
 const socket = io(`https://mind-sprint-server.onrender.com`);
-
+//
 export const adminNamespace = io(
   `https://mind-sprint-server.onrender.com/admin-dash`
 );
-
+//
 export const answerNamespace = io(
   `https://mind-sprint-server.onrender.com/answer`
 );

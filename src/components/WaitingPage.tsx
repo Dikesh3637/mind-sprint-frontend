@@ -8,21 +8,19 @@ export const WaitingPage = () => {
   useEffect(() => {
     if (Cookies.get("inQuiz") === "true") {
       socket.emit("connectToQuiz", { inQuiz: "true" });
-    } else {
-      navigate("/join-screen");
+
+      socket.on("cancel-quiz", () => {
+        console.log("quiz has been cancelled");
+        Cookies.set("inQuiz", "false");
+        navigate("/");
+      });
     }
 
-    socket.on("cancel-quiz", () => {
-      console.log("quiz has been cancelled");
-      Cookies.set("inQuiz", "false");
-      navigate("/");
-    });
-
-    socket.on("start-quiz", () => {
+    socket.on("timerUpdate", () => {
       navigate("/answer");
     });
 
-    socket.on("timerUpdate", () => {
+    socket.on("start-quiz", () => {
       navigate("/answer");
     });
 
