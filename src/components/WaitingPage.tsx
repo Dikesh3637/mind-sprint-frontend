@@ -22,6 +22,10 @@ export const WaitingPage = () => {
       navigate("/answer");
     });
 
+    socket.on("timerUpdate", () => {
+      navigate("/answer");
+    });
+
     return () => {
       socket.off("cancel-quiz");
       socket.off("start-quiz");
