@@ -10,9 +10,9 @@ import { io } from "socket.io-client";
 // export const adminNamespace = io(`http://localhost:10000/admin-dash`);
 // export const answerNamespace = io(`http://localhost:10000/answer`);
 
-const socket = io(`https://13.232.61.112`);
-export const adminNamespace = io(`https://13.232.61.112/admin-dash`);
-export const answerNamespace = io(`https://13.232.61.112/answer`);
+const socket = io(`https://api.page1dev.com`);
+export const adminNamespace = io(`https://api.page1dev.com/admin-dash`);
+export const answerNamespace = io(`https://api.page1dev.com/answer`);
 
 //
 // const socket = io(`https://mind-sprint-server.onrender.com`);
